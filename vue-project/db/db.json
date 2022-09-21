@@ -1,81 +1,107 @@
 {
-"ingredientes": {
+  "ingredientes": {
     "paes": [
-    {
+      {
         "id": 1,
         "tipo": "Italiano Branco"
-    },
-    {
+      },
+      {
         "id": 2,
         "tipo": "3 Queijos"
-    },
-    {
+      },
+      {
         "id": 3,
         "tipo": "Parmesão e Orégano"
-    },
-    {
+      },
+      {
         "id": 4,
         "tipo": "Integral"
-    }
+      }
     ],
     "carnes": [
-    {
+      {
         "id": 1,
         "tipo": "Maminha"
-    },
-    {
+      },
+      {
         "id": 2,
         "tipo": "Alcatra"
-    },
-    {
+      },
+      {
         "id": 3,
         "tipo": "Picanha"
-    },
-    {
+      },
+      {
         "id": 4,
         "tipo": "Veggie burger"
-    }
+      }
     ],
     "opcionais": [
-    {
+      {
         "id": 1,
         "tipo": "Bacon"
-    },
-    {
+      },
+      {
         "id": 2,
         "tipo": "Cheddar"
-    },
-    {
+      },
+      {
         "id": 3,
         "tipo": "Salame"
-    },
-    {
+      },
+      {
         "id": 4,
         "tipo": "Tomate"
-    },
-    {
+      },
+      {
         "id": 4,
         "tipo": "Cebola roxa"
-    },
-    {
+      },
+      {
         "id": 4,
         "tipo": "Pepino"
-    }
+      }
     ]
-},
-"status": [
+  },
+  "status": [
     {
-    "id": 1,
-    "tipo": "Solicitado"
+      "id": 1,
+      "tipo": "Solicitado"
     },
     {
-    "id": 2,
-    "tipo": "Em produção"
+      "id": 2,
+      "tipo": "Em produção"
     },
     {
-    "id": 3,
-    "tipo": "Finalizado"
+      "id": 3,
+      "tipo": "Finalizado"
     }
-],
-"burgers": [ ]
+  ],
+  "burguers": [
+    {
+      "nome": "arthur lindo",
+      "carne": "Picanha",
+      "pao": "Italiano Branco",
+      "opcionais": [
+        "Pepino",
+        "Tomate",
+        "Cheddar",
+        "Cebola roxa",
+        "Bacon"
+      ],
+      "status": "Finalizado",
+      "id": 1
+    },
+    {
+      "nome": "arthur gay",
+      "carne": "Veggie burger",
+      "pao": "Integral",
+      "opcionais": [
+        "Salame",
+        "Bacon"
+      ],
+      "status": "Em produção",
+      "id": 2
+    }
+  ]
 }

@@ -12,8 +12,8 @@
 
 <style scoped>
     footer{
-        position: absolute;
-        bottom: -100vh;
+        position: relative;
+        bottom: -15vh;
         height: 10em;
         background-color: #222;
         border-top: 4px solid #111;
