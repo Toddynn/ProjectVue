@@ -1,18 +1,84 @@
 <template>
-    <div class="tableBurguer" v-if="burguers">
+    <div class="tableSolicitations" v-if="burguers">
+        <Message :msg="msg" v-show="msg"></Message>
         <div class="headerTable">
             <div class="rowHeader">
-                <div class="headerId">#:</div>
+                <div class="headerId">Id:</div>
                 <div class="headerCliente">Cliente:</div>
                 <div class="headerBread">Pão:</div>
                 <div class="headerSteak">Carne:</div>
                 <div class="headerOptions">Opcionais:</div>
                 <div class="headerActions">Ações:</div>
             </div>
-            
         </div>
         <div class="rowsOrders">
-            <div class="rowOrder" v-for="burguer in burguers" :key="burguer.id">
+            <div class="rowOrder"  v-for="burguer in burguers" :key="burguer.id" v-show="burguer.status == 'Solicitado'">
+                <div class="orderId">{{burguer.id}}</div>
+                <div class="orderName">{{burguer.nome}}</div>
+                <div class="orderBread">{{burguer.pao}}</div>
+                <div class="orderSteak">{{burguer.carne}}</div>
+                <div class="oderOptions">
+                    <ul v-for="(opcional, index) in burguer.opcionais" :key="index">
+                        <li>{{opcional}}</li>
+                    </ul>
+                </div>
+                <div class="containerSelect">
+                    <select name="status" class="status" @change="updateBurguer($event, burguer.id)">
+                        <option :value="s.tipo" v-for="s in status" :key="s.id" :selected="burguer.status == s.tipo">{{s.tipo}}</option>
+                    </select>
+                    <button class="btn-delete" @click="deleteBurguer(burguer.id)">Cancelar Pedido</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="tableProduction" >
+        <div class="headerTable" >
+            <h1>Produção</h1>
+            <div class="rowHeader">
+                <div class="headerId">Id:</div>
+                <div class="headerCliente">Cliente:</div>
+                <div class="headerBread">Pão:</div>
+                <div class="headerSteak">Carne:</div>
+                <div class="headerOptions">Opcionais:</div>
+                <div class="headerActions">Estado:</div>
+            </div>
+        </div>
+        <div class="rowsOrders">
+            <div class="rowOrder" v-for="burguer in burguers" :key="burguer.id" v-show="burguer.status == 'Em produção'">
+                <div class="orderId">{{burguer.id}}</div>
+                <div class="orderName">{{burguer.nome}}</div>
+                <div class="orderBread">{{burguer.pao}}</div>
+                <div class="orderSteak">{{burguer.carne}}</div>
+                <div class="oderOptions">
+                    <ul v-for="(opcional, index) in burguer.opcionais" :key="index">
+                        <li>{{opcional}}</li>
+                    </ul>
+                </div>
+                <div class="containerSelect">
+                    <select name="status" class="status" @change="updateBurguer($event, burguer.id)">
+                        <option :value="s.tipo" v-for="s in status" :key="s.id" :selected="burguer.status == s.tipo">{{s.tipo}}</option>
+                    </select>
+                    <button class="btn-delete" @click="deleteBurguer(burguer.id)">Cancelar Pedido</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="tableFinished" >
+        <div class="headerTable" >
+            <h1>Finalizados</h1>
+            <div class="rowHeader">
+                <div class="headerId">Id:</div>
+                <div class="headerCliente">Cliente:</div>
+                <div class="headerBread">Pão:</div>
+                <div class="headerSteak">Carne:</div>
+                <div class="headerOptions">Opcionais:</div>
+                <div class="headerActions">Estado:</div>
+            </div>
+        </div>
+        <div class="rowsOrders">
+            <div class="rowOrder" v-for="burguer in burguers" :key="burguer.id" v-show="burguer.status == 'Finalizado'">
                 <div class="orderId">{{burguer.id}}</div>
                 <div class="orderName">{{burguer.nome}}</div>
                 <div class="orderBread">{{burguer.pao}}</div>
@@ -34,16 +100,22 @@
 </template>
 
 <script>
+    import Message from './Message.vue';
+
     export default {
         name: "Dashboard",
         data() {
             return {
                 burguers: null,
                 burguer_id: null,
-                status: []
+                status: [],
+                msg: null
             }
-            },
-            methods: {
+        },
+        components:{
+            Message
+        },
+        methods: {
             async getPedidos() {
                 const req = await fetch('http://localhost:3000/burguers');
                 const data = await req.json();
@@ -58,9 +130,13 @@
             },
             async deleteBurguer(id) {
                 const req = await fetch(`http://localhost:3000/burguers/${id}`, {
-                    method: "DELETE"
+                    method: "DELETE",
                 });
                 const res = await req.json();
+
+                this.msg = `❌ Pedido removido com sucesso!`;
+                setTimeout(() => this.msg = '', 2000);
+
                 this.getPedidos();
             },
             async updateBurguer(event, id) {
@@ -72,7 +148,13 @@
                     body: dataJSON
                 });
                 const res = await req.json();
-                console.log(res);
+
+                this.msg = `⚠️ O pedido nº${res.id} foi atualizado para ${res.status}`;
+                setTimeout(() => {
+                    this.msg = '',
+                    window.location.reload();
+                }, 2000);
+
             }
         },
         mounted () {
@@ -82,8 +164,20 @@
 </script>
 
 <style scoped>
-    .tableBurguer{
-        max-width: 85vw;
+    .tableSolicitations{
+        max-width: 100vw;
+        margin: 0 auto;
+    }
+
+    .tableProduction{
+        padding-top: 4em;
+        max-width: 100vw;
+        margin: 0 auto;
+    }
+
+    .tableFinished{
+        padding-top: 4em;
+        max-width: 100vw;
         margin: 0 auto;
     }
     
@@ -124,7 +218,6 @@
         width: 100%;
         justify-content: space-between;
         align-items: center;
-        border-bottom: 3px solid #333;
     }
     .rowOrder{
         width: 100%;

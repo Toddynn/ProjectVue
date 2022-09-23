@@ -79,29 +79,57 @@
   ],
   "burguers": [
     {
-      "nome": "arthur lindo",
-      "carne": "Picanha",
+      "nome": "Vinícius Gabriel Todis",
+      "carne": "Maminha",
+      "pao": "3 Queijos",
+      "opcionais": [
+        "Bacon",
+        "Cheddar",
+        "Salame",
+        "Cebola roxa"
+      ],
+      "status": "Finalizado",
+      "id": 2
+    },
+    {
+      "nome": "ricardo vergutz",
+      "carne": "Maminha",
       "pao": "Italiano Branco",
       "opcionais": [
-        "Pepino",
-        "Tomate",
-        "Cheddar",
-        "Cebola roxa",
         "Bacon"
       ],
       "status": "Finalizado",
-      "id": 1
+      "id": 3
     },
     {
-      "nome": "arthur gay",
-      "carne": "Veggie burger",
-      "pao": "Integral",
+      "nome": "Vinícius Gabriel Todis",
+      "carne": "Maminha",
+      "pao": "Italiano Branco",
       "opcionais": [
-        "Salame",
-        "Bacon"
+        "Cheddar"
       ],
       "status": "Em produção",
-      "id": 2
+      "id": 4
+    },
+    {
+      "nome": "Vinícius Gabriel Todis",
+      "carne": "Maminha",
+      "pao": "Italiano Branco",
+      "opcionais": [
+        "Bacon"
+      ],
+      "status": "Solicitado",
+      "id": 6
+    },
+    {
+      "nome": "Vinícius Gabriel Todis",
+      "carne": "Veggie burger",
+      "pao": "Italiano Branco",
+      "opcionais": [
+        "Salame"
+      ],
+      "status": "Solicitado",
+      "id": 7
     }
   ]
 }
