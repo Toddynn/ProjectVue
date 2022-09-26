@@ -16,6 +16,14 @@
       {
         "id": 4,
         "tipo": "Integral"
+      },
+      {
+        "id": 5,
+        "tipo": "Da Casa"
+      },
+      {
+        "id": 6,
+        "tipo": "7 Grãos"
       }
     ],
     "carnes": [
@@ -33,7 +41,15 @@
       },
       {
         "id": 4,
-        "tipo": "Veggie burger"
+        "tipo": "Veggie burguer"
+      },
+      {
+        "id": 5,
+        "tipo": "Artesanal"
+      },
+      {
+        "id": 4,
+        "tipo": "Artesanal Duplo"
       }
     ],
     "opcionais": [
@@ -89,12 +105,39 @@
       "id": 2
     },
     {
-      "nome": "asdasd",
-      "carne": "Alcatra",
-      "pao": "3 Queijos",
-      "opcionais": [],
+      "nome": "Vinícius Gabriel Todis",
+      "carne": "Picanha",
+      "pao": "Italiano Branco",
+      "opcionais": [
+        "Bacon",
+        "Salame"
+      ],
       "status": "Em produção",
       "id": 3
+    },
+    {
+      "nome": "Vinícius Gabriel Todis",
+      "carne": "Alcatra",
+      "pao": "Integral",
+      "opcionais": [
+        "Cheddar",
+        "Bacon",
+        "Salame"
+      ],
+      "status": "Em produção",
+      "id": 4
+    },
+    {
+      "nome": "Vinícius Gabriel Todis",
+      "carne": "Artesanal Duplo",
+      "pao": "Da Casa",
+      "opcionais": [
+        "Cheddar",
+        "Bacon",
+        "Cebola roxa"
+      ],
+      "status": "Em produção",
+      "id": 5
     }
   ]
 }

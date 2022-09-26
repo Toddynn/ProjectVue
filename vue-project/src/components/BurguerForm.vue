@@ -33,7 +33,7 @@
 </template>
 
 <script>
-    import Swal from "sweetalert2";
+import Swal from "sweetalert2";
 
     export default{
         name: "BurguerForm",
@@ -60,38 +60,49 @@
             async createBurguer(e){
                 e.preventDefault();
 
-                const data = {  
-                    nome: this.nome,
-                    carne: this.carne,
-                    pao: this.pao,
-                    opcionais: Array.from(this.opcionais),
-                    status: 'Solicitado',
-                }
-                const dataJSON = JSON.stringify(data);
-
-                const req = await fetch("http://localhost:3000/burguers",{
-                    method: "POST",
-                    headers: { "Content-type" : "application/json" },
-                    body: dataJSON
-                });
-                const res = await req.json();
-
                 Swal.fire({
-                    title: `Obrigado ${this.nome}, Seu pedido Nº${res.id} é:`,
+                    title: `Olá ${this.nome}, Seu pedido é:`,
                     text: `
                         Pão:${this.pao},
                         Carne:${this.carne},
-                        Opcionais:${this.opcionais}.
-                        Estamos preparando seu delicioso hambúrguer! 🍔
+                        Opcionais:${this.opcionais}
                     `,
-                    icon: 'success',
+                    icon: 'question',
+                    showDenyButton: true,
                     confirmButtonColor: '#FCBA03',
-                });
+                    denyButtonColor: '#222',
+                    confirmButtonText: 'Sim! Esse é meu pedido',
+                    denyButtonText: 'Refazer pedido',
+                }).then(async (response) =>{
+                    if(response.isConfirmed){
+                        const data = {  
+                            nome: this.nome,
+                            carne: this.carne,
+                            pao: this.pao,
+                            opcionais: Array.from(this.opcionais),
+                            status: 'Solicitado',
+                        }
 
-                this.nome = '';
-                this.carne = '';
-                this.pao = '';
-                this.opcionais = [];
+                        const req = await fetch("http://localhost:3000/burguers",{
+                            method: "POST",
+                            headers: { "Content-type" : "application/json" },
+                            body: JSON.stringify(data)
+                        });
+                        const res = await req.json();
+
+                        Swal.fire({
+                            icon: "success",
+                            title: `Obrigado ${this.nome}!`,
+                            text: `Estamos Preparando seu Delicioso Hambúrguer! Seu pedido é o Nº${res.id}.  🍔`,
+                            confirmButtonColor: '#FCBA03',
+                        })
+
+                        this.nome = '';
+                        this.carne = '';
+                        this.pao = '';
+                        this.opcionais = [];
+                    }
+                })
             }
         },
         mounted(){
@@ -185,3 +196,36 @@
     }
 
 </style>
+
+const data = {  
+    nome: this.nome,
+    carne: this.carne,
+    pao: this.pao,
+    opcionais: Array.from(this.opcionais),
+    status: 'Solicitado',
+}
+const dataJSON = JSON.stringify(data);
+
+const req = await fetch("http://localhost:3000/burguers",{
+    method: "POST",
+    headers: { "Content-type" : "application/json" },
+    body: dataJSON
+});
+const res = await req.json();
+
+Swal.fire({
+    title: `Obrigado ${this.nome}, Seu pedido Nº${res.id} é:`,
+    text: `
+        Pão:${this.pao},
+        Carne:${this.carne},
+        Opcionais:${this.opcionais}.
+        Estamos preparando seu delicioso hambúrguer! 🍔
+    `,
+    icon: 'success',
+    confirmButtonColor: '#FCBA03',
+});
+
+this.nome = '';
+this.carne = '';
+this.pao = '';
+this.opcionais = [];

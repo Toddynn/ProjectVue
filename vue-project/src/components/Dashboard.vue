@@ -173,7 +173,7 @@
                         toast.addEventListener('mouseenter', Swal.stopTimer)
                         toast.addEventListener('mouseleave', Swal.resumeTimer)
                     },
-                    didClose: (toast) => {
+                    didClose: () => {
                         window.location.reload();
                     }
                 })
