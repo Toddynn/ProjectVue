@@ -79,14 +79,22 @@
   ],
   "burguers": [
     {
-      "nome": "Vinícius Gabriel Todis",
+      "nome": "jos524",
       "carne": "Alcatra",
-      "pao": "Italiano Branco",
+      "pao": "Parmesão e Orégano",
       "opcionais": [
-        "Salame"
+        "Bacon"
       ],
-      "status": "Finalizado",
-      "id": 1
+      "status": "Em produção",
+      "id": 2
+    },
+    {
+      "nome": "asdasd",
+      "carne": "Alcatra",
+      "pao": "3 Queijos",
+      "opcionais": [],
+      "status": "Em produção",
+      "id": 3
     }
   ]
 }

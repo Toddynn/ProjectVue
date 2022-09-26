@@ -100,7 +100,7 @@
 </template>
 
 <script>
-    import Message from './Message.vue';
+    import Swal from 'sweetalert2';
 
     export default {
         name: "Dashboard",
@@ -113,7 +113,7 @@
             }
         },
         components:{
-            Message
+            Swal
         },
         methods: {
             async getPedidos() {
@@ -134,8 +134,22 @@
                 });
                 const res = await req.json();
 
-                this.msg = `❌ Pedido removido com sucesso!`;
-                setTimeout(() => this.msg = '', 2000);
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                })
+
+                Toast.fire({
+                    icon: 'error',
+                    title: `Pedido removido com sucesso`
+                })
 
                 this.getPedidos();
             },
@@ -149,11 +163,25 @@
                 });
                 const res = await req.json();
 
-                this.msg = `⚠️ O pedido nº${res.id} foi atualizado para ${res.status}`;
-                setTimeout(() => {
-                    this.msg = '',
-                    window.location.reload();
-                }, 2000);
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    },
+                    didClose: (toast) => {
+                        window.location.reload();
+                    }
+                })
+
+                Toast.fire({
+                    icon: 'warning',
+                    title: `O pedido Nº${res.id} foi atualizado para ${res.status}`,
+                })
 
             }
         },
