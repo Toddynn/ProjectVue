@@ -59,7 +59,7 @@
             },
             async createBurguer(e){
                 e.preventDefault();
-                
+
                 const data = {  
                     nome: this.nome,
                     carne: this.carne,
@@ -67,8 +67,8 @@
                     opcionais: Array.from(this.opcionais),
                     status: 'Solicitado',
                 }
-
                 const dataJSON = JSON.stringify(data);
+
                 const req = await fetch("http://localhost:3000/burguers",{
                     method: "POST",
                     headers: { "Content-type" : "application/json" },
@@ -76,31 +76,23 @@
                 });
                 const res = await req.json();
 
+                Swal.fire({
+                    title: `Obrigado ${this.nome}, Seu pedido Nº${res.id} é:`,
+                    text: `
+                        Pão:${this.pao},
+                        Carne:${this.carne},
+                        Opcionais:${this.opcionais}.
+                        Estamos preparando seu delicioso hambúrguer! 🍔
+                    `,
+                    icon: 'success',
+                    confirmButtonColor: '#FCBA03',
+                });
+
                 this.nome = '';
                 this.carne = '';
                 this.pao = '';
                 this.opcionais = [];
-                
-                Swal.fire({
-                    title: `Olá ${this.nome}, Seu pedido ${res.id}é:`,
-                    text: `
-                        Pão:${this.pao},
-                        Carne:${this.carne},
-                        Opcionais:${this.opcionais}
-                    `,
-                    icon: 'question',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Sim! Esse é meu pedido',
-                    cancelButtonText: 'Refazer pedido'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-
-                    }
-                })
             }
-            
         },
         mounted(){
             this.getIngredientes();
@@ -191,4 +183,5 @@
         background-color: transparent;
         transform: scale(101%);
     }
+
 </style>
