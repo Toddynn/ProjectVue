@@ -101,7 +101,7 @@
       "opcionais": [
         "Bacon"
       ],
-      "status": "Em produção",
+      "status": "Finalizado",
       "id": 2
     },
     {
@@ -112,7 +112,7 @@
         "Bacon",
         "Salame"
       ],
-      "status": "Em produção",
+      "status": "Finalizado",
       "id": 3
     },
     {
@@ -124,7 +124,7 @@
         "Bacon",
         "Salame"
       ],
-      "status": "Em produção",
+      "status": "Finalizado",
       "id": 4
     },
     {
@@ -136,7 +136,7 @@
         "Bacon",
         "Cebola roxa"
       ],
-      "status": "Em produção",
+      "status": "Finalizado",
       "id": 5
     }
   ]
